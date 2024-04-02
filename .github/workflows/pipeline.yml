@@ -45,9 +45,9 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
-  if: ${{ github.event_name == 'push' }}
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: Deploy to production
         uses: johnbeynon/render-deploy-action@v0.0.8
