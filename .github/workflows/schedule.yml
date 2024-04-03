@@ -1,0 +1,16 @@
+name: Service Health Check
+
+on:
+  schedule:
+    - cron: '0 */72 * * *' # Runs every 6 hours, adjust as needed
+
+jobs:
+  check-service-health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: https://full-stack-open-pokedex-qo1q.onrender.com/health
+          max-attempts: 3
+          retry-delay: 60s
